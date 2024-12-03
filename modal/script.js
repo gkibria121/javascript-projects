@@ -11,12 +11,11 @@ showModalButtons.forEach(btn => btn.addEventListener('click',showModal))
 closeModal.addEventListener('click',hideModal)
 overlay.addEventListener('click',hideModal)
 document.addEventListener('keydown',(e)=>{
-    if(e.key==='Escape') hideModal() 
+    if(e.key==='Escape' && !modal.classList.contains('hidden')) hideModal() 
     
 })
 
-function hideModal(){
-    if(this === modal) return
+function hideModal(){ 
 
     modal.classList.add('hidden')
     overlay.classList.add('hidden')
