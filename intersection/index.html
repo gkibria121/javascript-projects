@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        height: 200vh;
+        background-color: lightgray;
+      }
+      .target {
+        margin-top: 150vh;
+        height: 50vh;
+        background-color: orange;
+      }
+    </style>
+    <title>Intersection Observer Example</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="target"></div>
+    </div>
+
+    <script>
+      const container = document.querySelector(".container");
+      const target = document.querySelector(".target");
+      const callback = function (entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            console.log('Target is intersecting the container:', entry.target);
+          } else {
+            console.log('Target is not intersecting the container:', entry.target);
+          }
+        });
+      };
+      const options = {
+        root: null, // Use the container as the root
+        threshold: 0.1, // Trigger when 50% of the target is visible
+      };
+      const observer = new IntersectionObserver(callback, options);
+      observer.observe(target);
+    </script>
+  </body>
+</html>
